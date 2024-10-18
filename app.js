@@ -10,7 +10,13 @@ const MONGODB_URI_PROD = process.env.MONGODB_URI_PROD;
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/api", indexRouter);
+
 const mongoURI = MONGODB_URI_PROD;
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log( `server is on ${PORT}`);
+});
+
 
 mongoose
   .connect(mongoURI)
@@ -24,3 +30,4 @@ mongoose
 app.listen(4000, () => {
   console.log("server is on 4000");
 });
+
