@@ -16,7 +16,7 @@ userController.createUser = async (req, res) => {
     await newUser.save();
     res.status(200).json({ status: "success" });
   } catch (error) {
-    res.status(400).json({ status: "failed", error });
+    res.status(400).json({ status: "failed", error: "User already exists" });
   }
 };
 
@@ -33,7 +33,7 @@ userController.loginWithEmail = async (req, res) => {
     }
     throw new Error("The user ID or password you entered is incorrect");
   } catch (error) {
-    res.status(400).json({ status: "failed", error });
+    res.status(400).json({ status: "failed", message: error.message });
   }
 };
 
