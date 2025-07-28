@@ -22,7 +22,6 @@ const userSchema = Schema(
   { timestamps: true }
 );
 
-//항상 호출이 되면서 password는 보내지 않음
 userSchema.methods.toJSON = function () {
   const obj = this._doc;
   delete obj.password;
