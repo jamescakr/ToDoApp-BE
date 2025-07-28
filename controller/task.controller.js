@@ -22,32 +22,33 @@ taskController.getTask = async (req, res) => {
   }
 };
 
-taskController.updateTask = async (req,res) => {
-    try{
-        const {id} = req.params;
-        const {task, isComplete} = req.body
-        const updatedTask = await Task.findByIdAndUpdate(
-            id,
-            {task, isComplete},
-            {new: true}
-        );
-        if(!updatedTask) {
-            return res.status(404).json({status: "failed", error: "Task not found"});
-        }
-        res.status(200).json({status: "ok", data: updatedTask})
-    }catch(err){
-        res.status(400).json({status: "failed4", error: err})
+taskController.updateTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { task, isComplete } = req.body;
+    const updatedTask = await Task.findByIdAndUpdate(
+      //어떤함수인지 정확히 찾아보기
+      id,
+      { task, isComplete },
+      { new: true }
+    );
+    if (!updatedTask) {
+      return res.status(404).json({ status: "failed", error: "Task not found" });
     }
-}
+    res.status(200).json({ status: "ok", data: updatedTask });
+  } catch (err) {
+    res.status(400).json({ status: "failed4", error: err });
+  }
+};
 
 taskController.deleteTask = async (req, res) => {
-    try {
-        const {id} = req.params;
-        const deletedTask = await Task.findByIdAndDelete(id)
-        res.status(200).json({status: "ok", data: deletedTask})
-    } catch(err){
-        res.status(400).json({status: "failed3", error: err})
-    }
-}
+  try {
+    const { id } = req.params;
+    const deletedTask = await Task.findByIdAndDelete(id);
+    res.status(200).json({ status: "ok", data: deletedTask });
+  } catch (err) {
+    res.status(400).json({ status: "failed3", error: err });
+  }
+};
 
 module.exports = taskController;

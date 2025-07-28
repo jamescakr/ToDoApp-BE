@@ -5,7 +5,7 @@ const userController = {};
 
 userController.createUser = async (req, res) => {
   try {
-    const { email, name, password } = req.body;
+    const { email, name, password } = req.body; //로그인정보
     const user = await User.findOne({ email });
     if (user) {
       throw new Error("user is already exist");
